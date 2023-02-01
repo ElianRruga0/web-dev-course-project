@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\ActivityTypeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DestinationController;
 use Illuminate\Http\Request;
@@ -39,8 +40,16 @@ Route::controller(DestinationController::class)->group(function () {
 
 Route::controller(ActivityController::class)->group(function () {
     Route::get('activities', 'index');
-    // Route::post('destination', 'store');
-    Route::get('activity/{id}', 'show');
-    // Route::put('destination/{id}', 'update');
-    // Route::delete('destination/{id}', 'destroy');
+    Route::post('activities', 'store');
+    Route::get('activities/{id}', 'show');
+    Route::put('activities/{id}', 'update');
+    Route::delete('activities/{id}', 'destroy');
+});
+
+Route::controller(ActivityTypeController::class)->group(function () {
+    Route::get('activity_types', 'index');
+    Route::post('activity_types', 'store');
+    Route::get('activity_types/{id}', 'show');
+    Route::put('activity_types/{id}', 'update');
+    Route::delete('activity_types/{id}', 'destroy');
 });
