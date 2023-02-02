@@ -32,24 +32,24 @@ Route::controller(AuthController::class)->group(function () {
 
 Route::controller(DestinationController::class)->group(function () {
     Route::get('destinations', 'index');
-    Route::post('destination', 'store');
+    Route::post('destination', 'store')->middleware('auth:api');
     Route::get('destination/{id}', 'show');
-    Route::put('destination/{id}', 'update');
-    Route::delete('destination/{id}', 'destroy');
+    Route::put('destination/{id}', 'update')->middleware('auth:api');
+    Route::delete('destination/{id}', 'destroy')->middleware('auth:api');
 });
 
 Route::controller(ActivityController::class)->group(function () {
     Route::get('activities', 'index');
-    Route::post('activities', 'store');
+    Route::post('activities', 'store')->middleware('auth:api');
     Route::get('activities/{id}', 'show');
-    Route::put('activities/{id}', 'update');
-    Route::delete('activities/{id}', 'destroy');
+    Route::put('activities/{id}', 'update')->middleware('auth:api');
+    Route::delete('activities/{id}', 'destroy')->middleware('auth:api');
 });
 
 Route::controller(ActivityTypeController::class)->group(function () {
     Route::get('activity_types', 'index');
-    Route::post('activity_types', 'store');
+    Route::post('activity_types', 'store')->middleware('auth:api');
     Route::get('activity_types/{id}', 'show');
-    Route::put('activity_types/{id}', 'update');
-    Route::delete('activity_types/{id}', 'destroy');
+    Route::put('activity_types/{id}', 'update')->middleware('auth:api');
+    Route::delete('activity_types/{id}', 'destroy')->middleware('auth:api');
 });
