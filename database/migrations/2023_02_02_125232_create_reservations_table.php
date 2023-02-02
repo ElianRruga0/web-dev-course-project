@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string("email");
             $table->string("phone");
             $table->integer("guests");
+            $table->unsignedBigInteger('activity_id');
             $table->foreign('activity_id')->references('id')->on('activities')->onDelete('cascade');
             $table->timestamps();
         });

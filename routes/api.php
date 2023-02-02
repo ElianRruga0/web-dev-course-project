@@ -4,6 +4,7 @@ use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\ActivityTypeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DestinationController;
+use App\Http\Controllers\ReservationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -52,4 +53,12 @@ Route::controller(ActivityTypeController::class)->group(function () {
     Route::get('activity_types/{id}', 'show');
     Route::put('activity_types/{id}', 'update')->middleware('auth:api');
     Route::delete('activity_types/{id}', 'destroy')->middleware('auth:api');
+});
+
+
+Route::controller(ReservationController::class)->group(function () {
+    Route::get('reservations', 'index')->middleware('auth:api');
+    Route::post('reservations', 'store');
+    Route::get('reservations/{id}', 'show')->middleware('auth:api');;
+    Route::delete('reservations/{id}', 'destroy')->middleware('auth:api');
 });
