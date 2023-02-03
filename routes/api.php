@@ -28,7 +28,6 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('login', 'login');
     Route::post('register', 'register');
     Route::post('logout', 'logout');
-    Route::post('refresh', 'refresh');
     Route::post('me', 'me');
 });
 
@@ -68,6 +67,5 @@ Route::controller(OperatorController::class)->group(function () {
     Route::post('operator/login', 'login');
     Route::post('operator/register', 'register');
     Route::post('operator/logout', 'logout');
-    Route::post('operator/refresh', 'refresh');
     Route::post('operator/me', 'me');
 });

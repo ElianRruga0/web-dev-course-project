@@ -22,7 +22,8 @@ class OperatorController extends Controller
         ]);
         $credentials = $request->only('email', 'password');
 
-        $token = Auth::setTTL(5)->attempt($credentials);
+        Auth::setTTL(5);
+        $token = Auth::guard("api_operator")->attempt($credentials);
         if (!$token) {
             return response()->json([
                 'status' => 'error',
@@ -30,15 +31,18 @@ class OperatorController extends Controller
             ], 401);
         }
 
-        $user = Auth::user();
+
+        $user = Auth::guard("api_operator")->user();
         return response()->json([
             'status' => 'success',
             'user' => $user,
+
             'authorisation' => [
                 'token' => $token,
                 'type' => 'bearer',
             ]
         ]);
+        // }
     }
 
     public function register(Request $request)
@@ -55,7 +59,7 @@ class OperatorController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        $token = Auth::login($user);
+        $token = Auth::guard('api_operator')->login($user);
         return response()->json([
             'status' => 'success',
             'message' => 'Operator created successfully',
@@ -69,22 +73,10 @@ class OperatorController extends Controller
 
     public function logout()
     {
-        Auth::logout();
+        Auth::guard('api_operator')->logout();
         return response()->json([
             'status' => 'success',
             'message' => 'Successfully logged out',
-        ]);
-    }
-
-    public function refresh()
-    {
-        return response()->json([
-            'status' => 'success',
-            'user' => Auth::user(),
-            'authorisation' => [
-                'token' => Auth::refresh(),
-                'type' => 'bearer',
-            ]
         ]);
     }
 
