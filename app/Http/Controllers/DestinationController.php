@@ -26,7 +26,7 @@ class DestinationController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'description' => 'required|string|max:255',
+            'description' => 'required|string|max:1000',
             'image' => 'required|image|mimes:png,jpg,jpeg|max:2048'
         ]);
 
@@ -64,7 +64,7 @@ class DestinationController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'description' => 'required|string|max:255',
+            'description' => 'required|string|max:1000',
             'image' => 'required|string'
         ]);
 
