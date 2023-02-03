@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Operator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use App\Models\User;
-use PHPOpenSourceSaver\JWTAuth\JWTAuth;
 
-class AuthController extends Controller
+class OperatorController extends Controller
 {
-
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login', 'register']]);
+        $this->middleware('auth:api_operator', ['except' => ['login', 'register']]);
     }
 
     public function login(Request $request)
@@ -47,11 +45,11 @@ class AuthController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => 'required|string|email|max:255|unique:operators',
             'password' => 'required|string|min:6',
         ]);
 
-        $user = User::create([
+        $user = Operator::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
@@ -60,7 +58,7 @@ class AuthController extends Controller
         $token = Auth::login($user);
         return response()->json([
             'status' => 'success',
-            'message' => 'User created successfully',
+            'message' => 'Operator created successfully',
             'user' => $user,
             'authorisation' => [
                 'token' => $token,
@@ -93,7 +91,7 @@ class AuthController extends Controller
 
     public function me()
     {
-        $user = auth('api')->user();
+        $user = auth('api_operator')->user();
 
         if ($user)
             return response()->json([

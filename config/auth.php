@@ -49,6 +49,10 @@ return [
             'driver' => 'jwt',
             'provider' => 'users',
         ],
+        'api_operator' => [
+            'driver' => 'jwt',
+            'provider' => 'operators',
+        ],
     ],
 
     /*
@@ -73,11 +77,10 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'operators' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Operator::class,
+        ]
     ],
 
     /*

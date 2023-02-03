@@ -9,7 +9,7 @@ class ReservationController extends Controller
 {
     public function __construct()
     {
-        // $this->middleware('auth:api');
+        $this->middleware('auth:api_operator,api', ['except' => ['store']]);
     }
 
     public function index()
