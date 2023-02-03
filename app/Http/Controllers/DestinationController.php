@@ -27,7 +27,7 @@ class DestinationController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string|max:1000',
-            'image' => 'required|image|mimes:png,jpg,jpeg|max:2048'
+            'image' => 'required|image|mimes:png,jpg,jpeg'
         ]);
 
 
@@ -65,13 +65,12 @@ class DestinationController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string|max:1000',
-            'image' => 'required|string'
+            'image' => 'required|image|mimes:png,jpg,jpeg'
         ]);
 
         $destination = Destination::find($id);
         $destination->name = $request->name;
         $destination->description = $request->description;
-        $destination->image = $request->image;
 
         $destination->save();
 

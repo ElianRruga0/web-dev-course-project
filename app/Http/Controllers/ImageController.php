@@ -9,7 +9,7 @@ class ImageController extends Controller
     public function storeImage(Request $request)
     {
         $request->validate([
-            'image' => 'required|image|mimes:png,jpg,jpeg|max:2048'
+            'image' => 'required|image|mimes:png,jpg,jpeg'
         ]);
 
         $imageName = time() . '.' . $request->image->extension();

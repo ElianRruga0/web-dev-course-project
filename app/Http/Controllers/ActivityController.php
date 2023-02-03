@@ -28,7 +28,7 @@ class ActivityController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string|max:1000',
-            'image' => 'required|string',
+            'image' => 'required|image|mimes:png,jpg,jpeg',
             'startTime' => 'required|date|after:today',
             'endTime' => 'required|date',
             'minGuests' => 'required|integer',
@@ -37,10 +37,15 @@ class ActivityController extends Controller
             'activity_id' => 'required|exists:activities,id',
         ]);
 
+
+        $imageController = new ImageController();
+        $storeImage = $imageController->storeImage($request);
+
+
         $activity = Activity::create([
             'name' => $request->name,
             'description' => $request->description,
-            'image' => $request->image,
+            'image' => $storeImage,
             'startTime' => $request->startTime,
             'endTime' => $request->endTime,
             'minGuests' => $request->minGuests,
@@ -73,7 +78,7 @@ class ActivityController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string|max:1000',
-            'image' => 'required|string',
+            'image' => 'required|image|mimes:png,jpg,jpeg',
             'startTime' => 'required|date|after:today',
             'endTime' => 'required|date',
             'minGuests' => 'required|integer',
@@ -82,10 +87,14 @@ class ActivityController extends Controller
             'activity_id' => 'required|exists:activities,id',
         ]);
 
+        $imageController = new ImageController();
+        $storeImage = $imageController->storeImage($request);
+
+
         $activity = Activity::find($id);
         $activity->name = $request->name;
         $activity->description = $request->description;
-        $activity->image = $request->image;
+        $activity->image = $storeImage;
         $activity->startTime = $request->startTime;
         $activity->endTime = $request->endTime;
         $activity->minGuests = $request->minGuests;
