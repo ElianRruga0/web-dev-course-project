@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ImageController extends Controller
 {
@@ -16,6 +17,10 @@ class ImageController extends Controller
 
         // // Public Folder
         $request->image->move(public_path('images'), $imageName);
+
+
+
+
 
 
         return $imageName;
