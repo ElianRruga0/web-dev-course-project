@@ -59,6 +59,6 @@ Route::controller(ActivityTypeController::class)->group(function () {
 Route::controller(ReservationController::class)->group(function () {
     Route::get('reservations', 'index')->middleware('auth:api');
     Route::post('reservations', 'store');
-    Route::get('reservations/{id}', 'show')->middleware('auth:api');;
+    Route::get('reservations/{id}', 'show')->middleware('auth:api');
     Route::delete('reservations/{id}', 'destroy')->middleware('auth:api');
 });
