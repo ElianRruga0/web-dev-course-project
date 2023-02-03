@@ -24,7 +24,7 @@ class AuthController extends Controller
         ]);
         $credentials = $request->only('email', 'password');
 
-        $token = Auth::setTTL(5)->attempt($credentials);
+        $token = Auth::setTTL(10080)->attempt($credentials);
         if (!$token) {
             return response()->json([
                 'status' => 'error',

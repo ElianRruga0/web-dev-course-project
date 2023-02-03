@@ -22,7 +22,7 @@ class OperatorController extends Controller
         ]);
         $credentials = $request->only('email', 'password');
 
-        Auth::setTTL(5);
+        Auth::setTTL(10080);
         $token = Auth::guard("api_operator")->attempt($credentials);
         if (!$token) {
             return response()->json([
