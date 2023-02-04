@@ -9,7 +9,7 @@ class Activity extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'description', 'image', 'startTime', 'endTime', 'minGuests', 'maxGuests', 'currentGuests'];
+    protected $fillable = ['name', 'description', 'image', 'startTime', 'endTime', 'minGuests', 'maxGuests', 'currentGuests', 'destination_id', 'activity_id'];
 
 
     public function destination()
