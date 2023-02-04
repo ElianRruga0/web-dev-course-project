@@ -78,7 +78,6 @@ class ActivityController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string|max:1000',
-            'image' => 'required|image|mimes:png,jpg,jpeg|max',
             'startTime' => 'required|date|after:today',
             'endTime' => 'required|date',
             'minGuests' => 'required|integer',
@@ -87,14 +86,12 @@ class ActivityController extends Controller
             'activity_id' => 'required|exists:activities,id',
         ]);
 
-        $imageController = new ImageController();
-        $storeImage = $imageController->storeImage($request);
+
 
 
         $activity = Activity::find($id);
         $activity->name = $request->name;
         $activity->description = $request->description;
-        $activity->image = $storeImage;
         $activity->startTime = $request->startTime;
         $activity->endTime = $request->endTime;
         $activity->minGuests = $request->minGuests;
