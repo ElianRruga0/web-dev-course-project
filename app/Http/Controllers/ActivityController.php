@@ -78,10 +78,6 @@ class ActivityController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string|max:1000',
-            'startTime' => 'required|date|after:today',
-            'endTime' => 'required|date',
-            'minGuests' => 'required',
-            'maxGuests' => 'required',
             'destination_id' => 'required|exists:destinations,id',
             'activity_id' => 'required|exists:activity_types,id'
         ]);
@@ -92,10 +88,6 @@ class ActivityController extends Controller
         $activity = Activity::find($id);
         $activity->name = $request->name;
         $activity->description = $request->description;
-        $activity->startTime = $request->startTime;
-        $activity->endTime = $request->endTime;
-        $activity->minGuests = $request->minGuests;
-        $activity->maxGuests = $request->maxGuests;
         $activity->destination_id = $request->destination_id;
         $activity->activity_id = $request->activity_id;
 
