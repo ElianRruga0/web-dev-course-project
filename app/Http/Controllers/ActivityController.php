@@ -31,10 +31,10 @@ class ActivityController extends Controller
             'image' => 'required|image|mimes:png,jpg,jpeg',
             'startTime' => 'required|date|after:today',
             'endTime' => 'required|date',
-            'minGuests' => 'required|integer',
-            'maxGuests' => 'required|integer',
+            'minGuests' => 'required',
+            'maxGuests' => 'required',
             'destination_id' => 'required|exists:destinations,id',
-            'activity_type' => 'required|exists:activity_types,id',
+            'activity_id' => 'required|exists:activity_types,id',
         ]);
 
 
@@ -80,10 +80,10 @@ class ActivityController extends Controller
             'description' => 'required|string|max:1000',
             'startTime' => 'required|date|after:today',
             'endTime' => 'required|date',
-            'minGuests' => 'required|integer',
-            'maxGuests' => 'required|integer',
+            'minGuests' => 'required',
+            'maxGuests' => 'required',
             'destination_id' => 'required|exists:destinations,id',
-            'activity_id' => 'required|exists:activities,id',
+            'activity_id' => 'required|exists:activity_types,id'
         ]);
 
 
