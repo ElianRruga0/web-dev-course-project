@@ -34,7 +34,7 @@ class ActivityController extends Controller
             'minGuests' => 'required|integer',
             'maxGuests' => 'required|integer',
             'destination_id' => 'required|exists:destinations,id',
-            'activity_id' => 'required|exists:activities,id',
+            'activity_type' => 'required|exists:activity_types,id',
         ]);
 
 
