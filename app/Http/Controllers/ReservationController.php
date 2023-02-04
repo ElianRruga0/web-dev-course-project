@@ -41,7 +41,6 @@ class ReservationController extends Controller
         $activity->currentGuests = $currentGuests + $request->guests;
         $activity->save();
 
-
         $reservation = Reservation::create([
             'name' => $request->name,
             'surname' => $request->surname,
@@ -61,7 +60,7 @@ class ReservationController extends Controller
 
     public function show($id)
     {
-        $reservation = Reservation::find($id);
+        $reservation = Reservation::find($id)->with('activity');
         return response()->json([
             'status' => 'success',
             'reservation' => $reservation,
