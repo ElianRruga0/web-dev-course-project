@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Activity;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 
@@ -33,6 +34,12 @@ class ReservationController extends Controller
             'guests' => 'required',
             'activity_id' => 'required|exists:activities,id'
         ]);
+
+
+        $activity = Activity::find($request->activity_id);
+        $currentGuests = $activity->currentGuests;
+        $activity->currentGuests = $currentGuests + $request->guests;
+        $activity->save();
 
 
         $reservation = Reservation::create([
